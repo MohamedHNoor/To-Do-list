@@ -8,18 +8,18 @@ const todoArr = [
   {
     description: 'drink coffee',
     completed: false,
-    index: 4
+    index: 4,
   },
   {
     description: 'drink water',
     completed: false,
-    index: 2
+    index: 2,
   },
   {
     description: 'have dinner',
     completed: false,
-    index: 3
-  }
+    index: 3,
+  },
 ];
 
 const renderTodo = (todo) => {
