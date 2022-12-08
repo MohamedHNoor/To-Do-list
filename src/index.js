@@ -35,9 +35,11 @@ todolistContainer.addEventListener('click', (event) => {
   // target action
   const { action } = target.dataset;
 
-  /* eslint-disable */
-  action === 'edit' && editTodo(todoId);
-  action === 'delete' && deleteTodo(todoId);
+  if (action === 'edit') {
+    editTodo(todoId);
+  } else if (action === 'delete') {
+    deleteTodo(todoId);
+  }
 });
 
 window.addEventListener('DOMContentLoaded', renderTodo);

@@ -25,7 +25,7 @@ const addTodo = () => {
     todoArr.push({
       description: inputValue,
       complete: false,
-      index: todoArr.length,
+      index: todoArr.length + 1,
     });
   }
   input.value = '';
@@ -56,6 +56,9 @@ const editTodo = (todoId) => {
 const deleteTodo = (todoId) => {
   todoArr = todoArr.filter((todo, index) => index !== todoId);
   editTodoId = -1;
+  for (let i = 0; i < todoArr.length; i += 1) {
+    todoArr[i].index = i + 1;
+  }
   renderTodo();
   localStorage.setItem('TODO', JSON.stringify(todoArr));
 };
