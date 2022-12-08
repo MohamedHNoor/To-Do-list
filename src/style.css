@@ -41,9 +41,11 @@ body {
   width: 100%;
   padding: 10px;
   border: none;
+  outline: none;
+  font-size: 1.2rem;
 }
 
-#list {
+.list {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,9 +53,10 @@ body {
   border-bottom: 1px solid #666;
 }
 
-#list p {
+.list p {
   width: 80%;
   padding: 10px;
+  outline: none;
 }
 
 .fa-trash-can {

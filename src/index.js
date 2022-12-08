@@ -1,37 +1,45 @@
 import './style.css';
 
+import {
+  addTodo,
+  editTodo,
+  deleteTodo,
+  renderTodo,
+  todolistContainer,
+  todoArr,
+} from './functionality.js';
+
 // select elements
-const todlistContainer = document.querySelector('.todo-list');
 
-// todo array
-const todoArr = [
-  {
-    description: 'drink coffee',
-    completed: false,
-    index: 4,
-  },
-  {
-    description: 'drink water',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'have dinner',
-    completed: false,
-    index: 3,
-  },
-];
+const form = document.querySelector('form');
 
-const renderTodo = (todo) => {
-  todlistContainer.innerHTML += `
-  <div id="list">
-    <input type="checkbox" class="checkbox" job="complete"">
-    <p contenteditable="true" class="text" spellcheck="false">${todo.description}</p>
-    <i class="fa-regular fa-trash-can job="delete"></i>
- </div>
-  `;
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  todoArr.sort((a, b) => a.index - b.index).map((item) => renderTodo(item));
+// form submit
+form.addEventListener('submit', (Event) => {
+  Event.preventDefault();
+  addTodo();
+  renderTodo();
+  localStorage.setItem('TODO', JSON.stringify(todoArr));
 });
+
+// Click event listener for all todos
+todolistContainer.addEventListener('click', (event) => {
+  const { target } = event;
+  const parentElement = target.parentNode;
+
+  if (parentElement.className !== 'list') return;
+
+  // todo id
+  const todo = parentElement;
+  const todoId = Number(todo.id);
+
+  // target action
+  const { action } = target.dataset;
+
+  if (action === 'edit') {
+    editTodo(todoId);
+  } else if (action === 'delete') {
+    deleteTodo(todoId);
+  }
+});
+
+window.addEventListener('DOMContentLoaded', renderTodo);
