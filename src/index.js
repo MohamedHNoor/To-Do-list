@@ -6,7 +6,7 @@ import {
   deleteTodo,
   renderTodo,
   todolistContainer,
-  todoArr
+  todoArr,
 } from './functionality.js';
 
 // select elements
@@ -35,6 +35,7 @@ todolistContainer.addEventListener('click', (event) => {
   // target action
   const { action } = target.dataset;
 
+  /* eslint-disable */
   action === 'edit' && editTodo(todoId);
   action === 'delete' && deleteTodo(todoId);
 });
