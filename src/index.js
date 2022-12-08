@@ -6,7 +6,7 @@ import {
   deleteTodo,
   renderTodo,
   todolistContainer,
-  todoArr
+  todoArr,
 } from './functionality.js';
 
 // select elements
