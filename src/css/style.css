@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+#main {
+  border: 1px solid #999;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+  width: 500px;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightblue;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.add {
+  padding: 10px;
+}
+
+.add form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add form input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #666;
+}
+
+.list p {
+  width: 80%;
+  padding: 10px;
+  outline: none;
+}
+
+.fa-trash-can {
+  color: red;
+  cursor: pointer;
+}
+
+hr {
+  width: 100%;
+}
+
+.complete {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.lineThrough {
+  text-decoration: line-through;
+}
