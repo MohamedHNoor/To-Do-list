@@ -1,6 +1,5 @@
-// select elements
-const input = document.getElementById('text');
-const todolistContainer = document.querySelector('.todo-list');
+import { input, todolistContainer } from './variables.js';
+import checkValue from './checkStatus.js';
 
 // eslint-disable-next-line import/no-mutable-exports
 export let todoArr = JSON.parse(localStorage.getItem('TODO')) || [];
@@ -20,7 +19,6 @@ const addTodo = () => {
       ...todo,
       description: index === editTodoId ? inputValue : todo.description,
     }));
-    editTodoId = -1;
   } else {
     todoArr.push({
       description: inputValue,
@@ -40,7 +38,7 @@ const renderTodo = () => {
   todoArr.forEach((todo, index) => {
     todolistContainer.innerHTML += `
   <div class="list" id=${index}>
-    <input type="checkbox" class="checkbox" job="complete">
+  <input type="checkbox" data-action="checkbox">
     <p class="text" data-action="edit">${todo.description}</p>
     <i class="fa-regular fa-trash-can trash" data-action="delete" ></i>
 </div>
@@ -63,5 +61,32 @@ const deleteTodo = (todoId) => {
   localStorage.setItem('TODO', JSON.stringify(todoArr));
 };
 
-// eslint-disable-next-line object-curly-newline
-export { addTodo, editTodo, deleteTodo, renderTodo, todolistContainer };
+function checkTodo(todoId, box) {
+  box.nextElementSibling.classList.toggle('lineThrough');
+  todoArr[todoId].complete = checkValue(box);
+  if (todoArr[todoId].complete === true) {
+    box.complete = true;
+    box.nextElementSibling.classList.add('lineThrough');
+  }
+  localStorage.setItem('TODO', JSON.stringify(todoArr));
+}
+
+const completeTodo = () => {
+  todoArr = todoArr.filter((obj) => obj.complete !== true);
+  renderTodo();
+  for (let i = 0; i < todoArr.length; i += 1) {
+    todoArr[i].index = i + 1;
+  }
+  localStorage.setItem('TODO', JSON.stringify(todoArr));
+};
+
+export {
+  addTodo,
+  editTodo,
+  deleteTodo,
+  renderTodo,
+  todolistContainer,
+  checkTodo,
+  completeTodo,
+  checkValue,
+};

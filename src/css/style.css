@@ -75,3 +75,7 @@ hr {
   border-radius: 10px;
   cursor: pointer;
 }
+
+.lineThrough {
+  text-decoration: line-through;
+}
