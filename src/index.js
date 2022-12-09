@@ -1,17 +1,18 @@
-import './style.css';
+import './css/style.css';
 
+import { form, clearAll, todolistContainer } from './modules/variables.js';
 import {
   addTodo,
   editTodo,
   deleteTodo,
   renderTodo,
-  todolistContainer,
   todoArr,
-} from './functionality.js';
+  checkTodo,
+  completeTodo,
+  checkValue
+} from './modules/functionality.js';
 
 // select elements
-
-const form = document.querySelector('form');
 
 // form submit
 form.addEventListener('submit', (Event) => {
@@ -35,10 +36,26 @@ todolistContainer.addEventListener('click', (event) => {
   // target action
   const { action } = target.dataset;
 
-  if (action === 'edit') {
-    editTodo(todoId);
-  } else if (action === 'delete') {
-    deleteTodo(todoId);
+  if (action === 'edit') editTodo(todoId);
+  if (action === 'delete') deleteTodo(todoId);
+});
+
+clearAll.addEventListener('click', () => {
+  completeTodo();
+});
+
+todolistContainer.addEventListener('change', (event) => {
+  const { target } = event;
+  console.log(target);
+  const parentElement = target.parentNode;
+  if (!parentElement.classList.contains('list')) return;
+  const todoId = Number(parentElement.id);
+  // target the data action
+  const { action } = target.dataset;
+
+  if (action === 'checkbox') {
+    checkTodo(todoId, target);
+    checkValue(target);
   }
 });
 
