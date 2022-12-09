@@ -9,7 +9,7 @@ import {
   todoArr,
   checkTodo,
   completeTodo,
-  checkValue
+  checkValue,
 } from './modules/functionality.js';
 
 // select elements
@@ -46,7 +46,6 @@ clearAll.addEventListener('click', () => {
 
 todolistContainer.addEventListener('change', (event) => {
   const { target } = event;
-  console.log(target);
   const parentElement = target.parentNode;
   if (!parentElement.classList.contains('list')) return;
   const todoId = Number(parentElement.id);

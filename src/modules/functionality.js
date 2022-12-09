@@ -17,14 +17,13 @@ const addTodo = () => {
   if (editTodoId >= 0) {
     todoArr = todoArr.map((todo, index) => ({
       ...todo,
-      description: index === editTodoId ? inputValue : todo.description
+      description: index === editTodoId ? inputValue : todo.description,
     }));
-    // editTodoId = -1;
   } else {
     todoArr.push({
       description: inputValue,
       complete: false,
-      index: todoArr.length + 1
+      index: todoArr.length + 1,
     });
   }
   input.value = '';
@@ -63,11 +62,6 @@ const deleteTodo = (todoId) => {
 };
 
 function checkTodo(todoId, box) {
-  // todoArr = todoArr.map((todo, index) => ({
-  //   ...todo,
-  //   complete: index === todoId ? !todo.complete : todo.complete
-  // }));
-  console.log(todoArr[todoId].complete);
   box.nextElementSibling.classList.toggle('lineThrough');
   todoArr[todoId].complete = checkValue(box);
   if (todoArr[todoId].complete === true) {
@@ -75,7 +69,6 @@ function checkTodo(todoId, box) {
     box.nextElementSibling.classList.add('lineThrough');
   }
   localStorage.setItem('TODO', JSON.stringify(todoArr));
-  // localStorage.setItem('TODO', JSON.stringify(todoArr));
 }
 
 const completeTodo = () => {
@@ -95,5 +88,5 @@ export {
   todolistContainer,
   checkTodo,
   completeTodo,
-  checkValue
+  checkValue,
 };
